@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal Yearly Daily-Task Tracker (October 2026 — October 2027). A modern, minimalist productivity dashboard and digital planner.">
+  <title>My Yearly Tracker | October 2026 — October 2027</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- TOP APPLICATION WRAPPER -->
+  <div class="app-container">
+
+    <!-- GLOBAL NAVBAR / TOOLBAR -->
+    <nav class="top-nav" aria-label="Main Toolbar">
+      <div class="nav-brand">
+        <span class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+            <path d="m9 16 2 2 4-4"></path>
+          </svg>
+        </span>
+        <span class="brand-text">Yearly Planner</span>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Quick Jump to Today -->
+        <button id="btnJumpToday" class="btn btn-secondary btn-sm" title="Jump to Today's date" aria-label="Jump to Today">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span>Today</span>
+        </button>
+
+        <!-- Year Overview -->
+        <button id="btnYearOverview" class="btn btn-secondary btn-sm" aria-label="Open Year Overview">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>Year Overview</span>
+        </button>
+
+        <!-- Search -->
+        <button id="btnSearch" class="btn btn-secondary btn-sm" aria-label="Search Tasks">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span>Search</span>
+        </button>
+
+        <!-- Settings -->
+        <button id="btnSettings" class="btn btn-secondary btn-sm" aria-label="Open Settings">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span>Settings</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- MAIN HEADER SECTION -->
+    <header class="main-header">
+      <div class="header-titles">
+        <h1 class="header-title">My Yearly Tracker</h1>
+        <p class="header-subtitle">October 2026 — October 2027</p>
+      </div>
+
+      <!-- YEARLY OVERALL STATS CARD -->
+      <div class="header-stats-panel" id="headerStatsPanel">
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-value" id="statTotalDays">396</span>
+            <span class="stat-label">Days Tracked</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value" id="statCompletedDays">0</span>
+            <span class="stat-label">Completed Days</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value" id="statTotalTasks">0</span>
+            <span class="stat-label">Tasks Tracked</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value" id="statProgressPercent">0%</span>
+            <span class="stat-label">Overall Progress</span>
+          </div>
+        </div>
+
+        <div class="progress-bar-container">
+          <div class="progress-bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="overallProgressBarTrack">
+            <div class="progress-bar-fill" id="overallProgressBarFill" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MONTH CONTROLS & FILTER SECTION -->
+    <section class="controls-section" aria-label="Month Navigation and Filters">
+      <div class="month-navigator">
+        <button id="btnPrevMonth" class="nav-arrow-btn" aria-label="Previous Month">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span class="nav-btn-text">Previous</span>
+        </button>
+
+        <div class="current-month-display">
+          <h2 id="currentMonthLabel" class="current-month-title">October 2026</h2>
+          <span id="currentMonthMeta" class="current-month-meta">31 days &bull; 0 tasks</span>
+        </div>
+
+        <button id="btnNextMonth" class="nav-arrow-btn" aria-label="Next Month">
+          <span class="nav-btn-text">Next</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- FILTER TABS FOR CURRENT MONTH -->
+      <div class="filter-bar" role="tablist" aria-label="Task Status Filters">
+        <span class="filter-label">Filter:</span>
+        <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true" id="filterAll">
+          All
+          <span class="filter-count" id="countAll">0</span>
+        </button>
+        <button class="filter-tab" data-filter="completed" role="tab" aria-selected="false" id="filterCompleted">
+          Completed
+          <span class="filter-count" id="countCompleted">0</span>
+        </button>
+        <button class="filter-tab" data-filter="incomplete" role="tab" aria-selected="false" id="filterIncomplete">
+          Incomplete
+          <span class="filter-count" id="countIncomplete">0</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- MAIN DAY BOX GRID -->
+    <main class="grid-section">
+      <div id="daysGrid" class="days-grid" aria-live="polite">
+        <!-- Day cards dynamically injected here by script.js -->
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+      <p>Personal Yearly Tracker &bull; October 1, 2026 &mdash; October 31, 2027 &bull; All data stored securely in your browser</p>
+    </footer>
+
+  </div> <!-- /.app-container -->
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- 1. ADD TASK MODAL -->
+  <div class="modal-overlay" id="addTaskModal" role="dialog" aria-modal="true" aria-labelledby="addTaskTitle" hidden>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="addTaskTitle" class="modal-title">Add New Task</h3>
+        <button type="button" class="btn-close-modal" data-close="addTaskModal" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="addTaskForm" class="modal-form">
+        <p class="modal-target-date" id="addTaskTargetDateDisplay">For October 1, 2026</p>
+        <div class="form-group">
+          <label for="addTaskInput">Task Name</label>
+          <input type="text" id="addTaskInput" class="form-input" placeholder="e.g., Study Python, Exercise, Project Review..." required autocomplete="off">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close="addTaskModal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. EDIT TASK MODAL -->
+  <div class="modal-overlay" id="editTaskModal" role="dialog" aria-modal="true" aria-labelledby="editTaskTitle" hidden>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="editTaskTitle" class="modal-title">Edit Task</h3>
+        <button type="button" class="btn-close-modal" data-close="editTaskModal" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="editTaskForm" class="modal-form">
+        <p class="modal-target-date" id="editTaskTargetDateDisplay">Date</p>
+        <div class="form-group">
+          <label for="editTaskInput">Task Name</label>
+          <input type="text" id="editTaskInput" class="form-input" required autocomplete="off">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close="editTaskModal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. DELETE TASK CONFIRM MODAL -->
+  <div class="modal-overlay" id="deleteTaskModal" role="dialog" aria-modal="true" aria-labelledby="deleteTaskTitle" hidden>
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <h3 id="deleteTaskTitle" class="modal-title">Delete Task?</h3>
+        <button type="button" class="btn-close-modal" data-close="deleteTaskModal" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this task?</p>
+        <p class="modal-task-preview" id="deleteTaskNamePreview">"Task Name"</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close="deleteTaskModal">Cancel</button>
+        <button type="button" id="btnConfirmDeleteTask" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. YEAR OVERVIEW MODAL -->
+  <div class="modal-overlay" id="yearOverviewModal" role="dialog" aria-modal="true" aria-labelledby="yearOverviewTitle" hidden>
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <div>
+          <h3 id="yearOverviewTitle" class="modal-title">Yearly Overview</h3>
+          <p class="modal-subtitle">October 2026 — October 2027 (13 Months)</p>
+        </div>
+        <button type="button" class="btn-close-modal" data-close="yearOverviewModal" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body modal-scrollable">
+        <div id="yearOverviewGrid" class="year-overview-grid">
+          <!-- Dynamically generated month progress cards -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close="yearOverviewModal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. SEARCH MODAL -->
+  <div class="modal-overlay" id="searchModal" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle" hidden>
+    <div class="modal-card modal-md">
+      <div class="modal-header">
+        <h3 id="searchModalTitle" class="modal-title">Search Tasks & Notes</h3>
+        <button type="button" class="btn-close-modal" data-close="searchModal" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="search-input-wrapper">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="globalSearchInput" class="search-input" placeholder="Type to search (e.g. JARVIS, Python, Exercise)..." autocomplete="off">
+        <button type="button" id="btnClearSearch" class="btn-clear-search" aria-label="Clear search" hidden>&times;</button>
+      </div>
+      <div class="modal-body modal-scrollable">
+        <div id="searchResultsList" class="search-results-list">
+          <div class="empty-search-state">
+            <p>Start typing to search tasks across all 396 days.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <span class="search-count-text" id="searchMatchCount">0 matches</span>
+        <button type="button" class="btn btn-secondary" data-close="searchModal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. SETTINGS MODAL -->
+  <div class="modal-overlay" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle" hidden>
+    <div class="modal-card modal-md">
+      <div class="modal-header">
+        <h3 id="settingsModalTitle" class="modal-title">Settings & Data Management</h3>
+        <button type="button" class="btn-close-modal" data-close="settingsModal" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="settings-section">
+          <h4 class="settings-heading">Backup & Restore</h4>
+          <p class="settings-desc">Export your tracker data as a backup JSON file or import previously saved data.</p>
+          <div class="settings-actions">
+            <button type="button" id="btnExportData" class="btn btn-secondary btn-sm">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Export JSON Backup</span>
+            </button>
+            <label class="btn btn-secondary btn-sm btn-file-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              <span>Import JSON Backup</span>
+              <input type="file" id="importFileInput" accept=".json" style="display: none;">
+            </label>
+          </div>
+        </div>
+
+        <div class="settings-divider"></div>
+
+        <div class="settings-section">
+          <h4 class="settings-heading">Sample Data</h4>
+          <p class="settings-desc">Populate demo tasks (Study Python, JARVIS Project, Exercise) for October 1–3, 2026.</p>
+          <button type="button" id="btnLoadDemoData" class="btn btn-secondary btn-sm">Load Demo Tasks</button>
+        </div>
+
+        <div class="settings-divider"></div>
+
+        <div class="settings-section">
+          <h4 class="settings-heading text-danger">Danger Zone</h4>
+          <p class="settings-desc">Permanently remove all locally stored tasks, notes, and progress records.</p>
+          <button type="button" id="btnOpenClearConfirm" class="btn btn-danger-outline btn-sm">Clear All Tracker Data</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close="settingsModal">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. CLEAR ALL DATA CONFIRM MODAL -->
+  <div class="modal-overlay" id="clearConfirmModal" role="dialog" aria-modal="true" aria-labelledby="clearConfirmTitle" hidden>
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <h3 id="clearConfirmTitle" class="modal-title text-danger">Clear All Tracker Data</h3>
+        <button type="button" class="btn-close-modal" data-close="clearConfirmModal" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Are you sure?</strong></p>
+        <p class="text-secondary mt-1">This will permanently remove all locally saved tracker data. This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close="clearConfirmModal">Cancel</button>
+        <button type="button" id="btnConfirmClearAll" class="btn btn-danger">Clear Data</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER FOR NOTIFICATIONS -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- MAIN SCRIPT -->
+  <script src="script.js"></script>
+</body>
+</html>
